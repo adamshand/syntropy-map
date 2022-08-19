@@ -12,9 +12,11 @@ code {
     monospace;
 }
 
-.leaflet-container {
-  border: 2px solid silver;
+#root {
   padding: 5px;
-  width: 90%;
-  height: 90vh;
+}
+
+.leaflet-container {
+  padding: 5px;
+  height: 98vh;
 }
