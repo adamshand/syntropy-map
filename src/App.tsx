@@ -7,7 +7,20 @@ import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 // import "./App.css";
 // import "./leaflet.css";
 
-function App() {
+const markers = [
+  {
+    email: "adam@shand.net",
+    location: [-40.8447, 175.0949],
+    description: "This is where Adam lives.",
+  },
+  {
+    email: "djb@dajabe.nz",
+    location: [-40.3565, 175.5715],
+    description: "This is where David lives.",
+  },
+];
+
+export default function App() {
   return (
     <div className="app">
       <div id="map">
@@ -16,16 +29,23 @@ function App() {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
-          <Marker position={[-40.8447, 175.0949]}>
-            <Popup>This is where Adam lives.</Popup>
-          </Marker>
-          <Marker position={[-40.3565, 175.5715]}>
-            <Popup>This is where David lives.</Popup>
-          </Marker>
+          <LocationMarker />
         </MapContainer>
       </div>
     </div>
   );
 }
 
-export default App;
+// TypeScript error with <Marker position={}>
+function LocationMarker() {
+  return (
+    <>
+      {markers.length > 0 &&
+        markers.map((marker) => (
+          <Marker key={marker.email} position={marker.location}>
+            <Popup>{marker.description}</Popup>
+          </Marker>
+        ))}
+    </>
+  );
+}
