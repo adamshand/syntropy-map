@@ -21,10 +21,12 @@ import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 
 export default function App() {
   const url = "https://f001.backblazeb2.com/file/adam-web-public/markers.json";
+
   (async () => {
     const markers = await fetch(url);
     console.log(markers);
   })();
+
   return (
     <MapContainer center={[-40.9, 174.886]} zoom={6} scrollWheelZoom={true}>
       <TileLayer
